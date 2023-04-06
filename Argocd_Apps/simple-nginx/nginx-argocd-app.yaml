@@ -5,13 +5,16 @@ metadata:
   namespace: argocd
 spec:
   project: default
-  source:
+  sources:
+  - repoURL: 'https://charts.bitnami.com/bitnami'
     chart: nginx
-    repoURL: https://charts.bitnami.com/bitnami
     targetRevision: 13.2.30
     helm:
       valueFiles:
-      - nginx-values.yaml
+      - $values/Argocd_Apps/simple-nginx/nginx-values.yaml
+  - repoURL: 'https://github.com/mustafa-abdelnasser/FE_CCE_DevOps.git'
+    targetRevision: main
+    ref: values
   destination:
     server: "https://kubernetes.default.svc"
     namespace: default
