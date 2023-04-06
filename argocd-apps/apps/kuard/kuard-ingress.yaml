@@ -1,0 +1,24 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: kuard
+  annotations:
+    kubernetes.io/ingress.class: "nginx"    
+    #cert-manager.io/issuer: "letsencrypt-staging"
+
+spec:
+  tls:
+  - hosts:
+    - kuard.fe.devops-labs.site
+    secretName: kuard-tls
+  rules:
+  - host: kuard.fe.devops-labs.site
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: kuard
+            port:
+              number: 80
