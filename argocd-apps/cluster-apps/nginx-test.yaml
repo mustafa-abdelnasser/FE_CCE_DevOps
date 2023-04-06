@@ -1,0 +1,24 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: nginx-test
+spec:
+  destination:
+    name: ''
+    namespace: default
+    server: 'https://kubernetes.default.svc'
+  source:
+    path: /helm-charts/nginx
+    repoURL: 'https://github.com/mustafa-abdelnasser/FE_CCE_DevOps'
+    targetRevision: HEAD
+    helm:
+      valueFiles:
+        - custom_13.2.33_values.yaml
+  sources: []
+  project: default
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true
