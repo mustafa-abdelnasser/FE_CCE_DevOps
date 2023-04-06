@@ -8,7 +8,7 @@ spec:
     namespace: default
     server: 'https://kubernetes.default.svc'
   source:
-    path: /helm-charts/nginx
+    path: ./helm-charts/nginx
     repoURL: 'https://github.com/mustafa-abdelnasser/FE_CCE_DevOps'
     targetRevision: HEAD
     helm:
