@@ -1,0 +1,24 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: argocd
+spec:
+  destination:
+    name: ''
+    namespace: nginx-ingress
+    server: 'https://kubernetes.default.svc'
+  source:
+    path: ./helm-charts/ingress-nginx
+    repoURL: 'https://github.com/mustafa-abdelnasser/FE_CCE_DevOps'
+    targetRevision: HEAD
+    helm:
+      valueFiles:
+        - ingress-nginx_4.5.2_custom-values.yaml
+  sources: []
+  project: default
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true
