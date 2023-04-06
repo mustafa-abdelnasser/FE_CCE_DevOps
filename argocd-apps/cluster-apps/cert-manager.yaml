@@ -1,0 +1,24 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: cert-manager
+spec:
+  destination:
+    name: ''
+    namespace: cert-manager
+    server: 'https://kubernetes.default.svc'
+  source:
+    path: ./helm-charts/cert-manager
+    repoURL: 'https://github.com/mustafa-abdelnasser/FE_CCE_DevOps'
+    targetRevision: HEAD
+    helm:
+      valueFiles:
+        - cert-manger_1.11.0_custom_values.yaml
+  sources: []
+  project: default
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true
