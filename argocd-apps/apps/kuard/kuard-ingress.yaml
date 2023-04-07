@@ -3,14 +3,14 @@ kind: Ingress
 metadata:
   name: kuard
   annotations:   
-    cert-manager.io/issuer: "kuard-letsencrypt-staging"
+    #cert-manager.io/issuer: "letsencrypt-staging"
 
 spec:
   ingressClassName: nginx
   tls:
   - hosts:
     - kuard.fe.devops-labs.site
-    secretName: kuard-tls
+    #secretName: kuard-tls ## omitted to use default wildcard certificate
   rules:
   - host: kuard.fe.devops-labs.site
     http:
