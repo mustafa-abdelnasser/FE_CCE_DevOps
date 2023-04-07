@@ -8,9 +8,6 @@ apiVersion: cert-manager.io/v1
     app.kubernetes.io/name: {{ template "cert-manager.name" . }}
     app.kubernetes.io/instance: {{ .Release.Name }}
     app.kubernetes.io/component: "controller"
-      annotations:
-    {{- toYaml . | nindent 4 }}
-  {{- end }}
    spec:
      acme:
        # The ACME server URL
