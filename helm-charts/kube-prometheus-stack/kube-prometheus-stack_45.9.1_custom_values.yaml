@@ -2527,7 +2527,7 @@ prometheus:
     ## TLS configuration for Prometheus Ingress
     ## Secret must be manually created in the namespace
     ##
-    tls: []
+    tls:
        - secretName: prometheus-general-tls
          hosts:
            - prometheus.fe.devops-labs.site
