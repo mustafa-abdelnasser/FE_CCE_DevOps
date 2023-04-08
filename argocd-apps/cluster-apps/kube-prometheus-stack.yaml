@@ -1,0 +1,24 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: kps
+spec:
+  destination:
+    name: ''
+    namespace: prometheus-stack
+    server: 'https://kubernetes.default.svc'
+  source:
+    path: ./helm-charts/kube-prometheus-stack
+    repoURL: 'https://github.com/mustafa-abdelnasser/FE_CCE_DevOps'
+    targetRevision: HEAD
+    helm:
+      valueFiles:
+        - kube-prometheus-stack_45.9.1_custom_values.yaml
+  sources: []
+  project: default
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true
