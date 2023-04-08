@@ -809,7 +809,7 @@ grafana:
     # hosts:
     #   - grafana.domain.com
     hosts:
-   - grafana.fe.devops-labs.site
+      - grafana.fe.devops-labs.site
 
     ## Path for grafana ingress
     path: /
