@@ -2,7 +2,8 @@ apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: kuard
-  annotations:   
+  annotations:
+    nginx.ingress.kubernetes.io/ssl-passthrough
     #cert-manager.io/issuer: "letsencrypt-prod"
     cert-manager.io/cluster-issuer: "letsencrypt-prod"
 
