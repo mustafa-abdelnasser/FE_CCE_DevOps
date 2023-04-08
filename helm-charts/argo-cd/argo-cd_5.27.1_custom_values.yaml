@@ -1797,6 +1797,8 @@ server:
     annotations:
       nginx.ingress.kubernetes.io/force-ssl-redirect: "true"
       nginx.ingress.kubernetes.io/backend-protocol: "HTTP"
+      cert-manager.io/cluster-issuer: "letsencrypt-prod"
+      nginx.ingress.kubernetes.io/ssl-passthrough: "true"
 
     # -- Additional ingress labels
     labels: {}
@@ -1831,7 +1833,7 @@ server:
       - secretName: your-certificate-name
         hosts:
           - argocd.fe.devops-labs.site
-      # - secretName: your-certificate-name
+      - secretName: argocd-tls
       #   hosts:
       #     - argocd.example.com
 
