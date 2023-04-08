@@ -3,10 +3,10 @@ kind: Ingress
 metadata:
   name: kuard
   annotations:
-    nginx.ingress.kubernetes.io/ssl-passthrough
     #cert-manager.io/issuer: "letsencrypt-prod"
     cert-manager.io/cluster-issuer: "letsencrypt-prod"
-
+    nginx.ingress.kubernetes.io/ssl-passthrough: true
+    
 spec:
   ingressClassName: nginx
   tls:
