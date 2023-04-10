@@ -1,0 +1,15 @@
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  name: kuard-service-monitor
+  labels:
+    release: kps
+spec:
+  jobLabel: job
+  endpoints:
+  - interval: 30
+    path: /metrics
+    port: web
+  selector:
+    matchLabels:
+      app: kuard-service
