@@ -7,7 +7,7 @@ metadata:
 spec:
   jobLabel: job
   endpoints:
-  - interval: "30"
+  - interval: "30s"
     path: /metrics
     port: web
   selector:
