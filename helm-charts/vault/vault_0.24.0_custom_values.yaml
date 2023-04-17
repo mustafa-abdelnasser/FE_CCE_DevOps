@@ -428,10 +428,11 @@ server:
     activeService: true
     hosts:
       - host: vault.fe.devops-labs.site
-        paths: []
+        paths:
+          - /
     ## Extra paths to prepend to the host configuration. This is useful when working with annotation based services.
-    extraPaths:
-      - /
+    extraPaths: []
+    #  - /
     # - path: /*
     #   backend:
     #     service:
