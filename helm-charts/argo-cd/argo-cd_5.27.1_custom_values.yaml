@@ -344,9 +344,6 @@ configs:
     plugins:
       # vault-plugin
       argocd-vault-plugin:
-        init:
-          command: [sh]
-          args: [-c, 'echo "Initializing..."']
         discover:
           find:
             command:
@@ -355,7 +352,7 @@ configs:
               - "find . -name '*.yaml' | xargs -I {} grep \"<path\\|avp\\.kubernetes\\.io\" {} | grep ."
         generate:
           command: ["argocd-vault-plugin"]
-          args: ["generate", "--secret-name vault-configuration", "./" ]
+          args: ["generate", "--secret-name vault-configuration", "." ]
         allowConcurrency: true
         lockRepo: false
       # --- First plugin
@@ -2047,8 +2044,8 @@ repoServer:
   envFrom:
   # - configMapRef:
   #     name: config-map-name
-  - secretRef:
-      name: vault-configuration
+  # - secretRef:
+  #     name: vault-configuration
 
   # -- Additional containers to be added to the repo server pod
   ## Ref: https://argo-cd.readthedocs.io/en/stable/user-guide/config-management-plugins/
@@ -2057,7 +2054,7 @@ repoServer:
     - name: argocd-vault-plugin
       command:
         - "/var/run/argocd/argocd-cmp-server"
-      image: busybox
+      image: quay.io/argoproj/argocd:v2.6.6
       securityContext:
         runAsNonRoot: true
         runAsUser: 999
