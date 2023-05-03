@@ -2046,7 +2046,7 @@ repoServer:
 
   # -- envFrom to pass to repo server
   # @default -- `[]` (See [values.yaml])
-  envFrom: []
+  envFrom:
   # - configMapRef:
   #     name: config-map-name
   - secretRef:
