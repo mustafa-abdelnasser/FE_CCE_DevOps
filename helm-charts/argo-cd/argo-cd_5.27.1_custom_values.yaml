@@ -2049,8 +2049,8 @@ repoServer:
   envFrom: []
   # - configMapRef:
   #     name: config-map-name
-  # - secretRef:
-  #     name: secret-name
+  - secretRef:
+      name: vault-configuration
 
   # -- Additional containers to be added to the repo server pod
   ## Ref: https://argo-cd.readthedocs.io/en/stable/user-guide/config-management-plugins/
