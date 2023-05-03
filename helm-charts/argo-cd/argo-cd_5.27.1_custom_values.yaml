@@ -354,11 +354,8 @@ configs:
               - "-c"
               - "find . -name '*.yaml' | xargs -I {} grep \"<path\\|avp\\.kubernetes\\.io\" {} | grep ."
         generate:
-          command:
-            - argocd-vault-plugin
-            - generate
-            - "-s vault-configuration"
-            - "."
+          command: ["argocd-vault-plugin"]
+          args: ["generate -s vault-configuration", "./" ]
         allowConcurrency: true
         lockRepo: false
       # --- First plugin
