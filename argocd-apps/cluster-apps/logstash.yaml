@@ -16,7 +16,7 @@ spec:
         valueFiles:
         - $values/helm-charts/logstash/values_8.5.1.yaml
     - repoURL: 'https://github.com/mustafa-abdelnasser/FE_CCE_DevOps'
-      targetRevision: HEAD
+      targetRevision: main
       ref: values
   sources: []
   project: default
