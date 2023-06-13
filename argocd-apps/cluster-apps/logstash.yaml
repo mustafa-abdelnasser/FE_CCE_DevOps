@@ -11,7 +11,6 @@ spec:
   sources:
     - repoURL: 'https://helm.elastic.co'
       chart: logstash
-      targetRevision: HEAD
       helm:
         valueFiles:
         - $values/helm-charts/logstash/values_8.5.1.yaml
