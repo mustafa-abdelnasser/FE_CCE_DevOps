@@ -1,0 +1,28 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: logstash
+  namespace: argocd
+spec:
+  destination:
+    name: ''
+    namespace: log-management
+    server: 'https://kubernetes.default.svc'
+  sources:
+    - repoURL: 'https://helm.elastic.co'
+      chart: logstash
+      targetRevision: HEAD
+      helm:
+        valueFiles:
+        - $values/helm-charts/logstash/values_8.5.1.yaml
+    - repoURL: 'https://github.com/mustafa-abdelnasser/FE_CCE_DevOps'
+      targetRevision: HEAD
+      ref: values
+  sources: []
+  project: default
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true
