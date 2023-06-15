@@ -75,7 +75,7 @@ envFrom:
 
 # Add sensitive data to k8s secrets
 secrets:
-  - name: "env-secret"
+  - name: "env"
     value:
       ES_USER: <path:kubernetes_apps/data/elastic_search#ES_USER>
       ES_PASSWORD: <path:kubernetes_apps/data/elastic_search#ES_PASSWORD>   
