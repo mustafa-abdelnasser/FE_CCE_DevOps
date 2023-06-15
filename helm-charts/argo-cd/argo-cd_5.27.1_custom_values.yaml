@@ -367,8 +367,9 @@ configs:
             - sh
             - "-c"
             - |
-              helm template $ARGOCD_APP_NAME --include-crds -n $ARGOCD_APP_NAMESPACE ${ARGOCD_ENV_HELM_ARGS} . |
+              helm template $ARGOCD_APP_NAME --include-crds . |
               argocd-vault-plugin generate -
+        allowConcurrency: true
         lockRepo: false
       # --- First plugin
       # my-plugin:
