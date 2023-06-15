@@ -38,7 +38,6 @@ logstashPipeline:
           index => "%{[@metadata][beat]}-%{[@metadata][version]}-%{+YYYY.MM.dd}"
           user => "${ES_USER}"
           password => "${ES_PASSWORD}"
-          cacert => '/etc/logstash/certificates/ca.crt'
       }
     }
     
