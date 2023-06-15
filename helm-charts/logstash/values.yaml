@@ -7,11 +7,11 @@ replicas: 1
 # Note that when overriding logstash.yml, `http.host: 0.0.0.0` should always be included
 # to make default probes work.
 logstashConfig:
-  logstash.yml: |
-    http:
-      host: "0.0.0.0"
-    path:
-      config: /usr/share/logstash/pipeline
+  # logstash.yml: |
+  #   http:
+  #     host: "0.0.0.0"
+  #   path:
+  #     config: /usr/share/logstash/pipeline
 #  logstash.yml: |
 #    key:
 #      nestedkey: value
