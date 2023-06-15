@@ -1,12 +1,17 @@
 ---
-replicas: 2
+replicas: 1
 
 # Allows you to add any config files in /usr/share/logstash/config/
 # such as logstash.yml and log4j2.properties
 #
 # Note that when overriding logstash.yml, `http.host: 0.0.0.0` should always be included
 # to make default probes work.
-logstashConfig: {}
+logstashConfig:
+  logstash.yml: |
+    http:
+      host: "0.0.0.0"
+    path:
+      config: /usr/share/logstash/pipeline
 #  logstash.yml: |
 #    key:
 #      nestedkey: value
@@ -15,7 +20,28 @@ logstashConfig: {}
 
 # Allows you to add any pipeline files in /usr/share/logstash/pipeline/
 ### ***warn*** there is a hardcoded logstash.conf in the image, override it first
-logstashPipeline: {}
+logstashPipeline: 
+  logstash.conf: |
+    # input will come from filebeat
+    input {
+      beats {
+        port => 5044
+      }
+    }
+
+    filter {
+    }
+
+    output {
+      elasticsearch {
+          hosts => ["https://90.84.19.224:9200"]
+          index => "%{[@metadata][beat]}-%{[@metadata][version]}-%{+YYYY.MM.dd}"
+          user => "${ES_USER}"
+          password => "${ES_PASSWORD}"
+          cacert => '/etc/logstash/certificates/ca.crt'
+      }
+    }
+    
 #  logstash.conf: |
 #    input {
 #      exec {
@@ -39,14 +65,20 @@ extraEnvs: []
 #    value: the_value_goes_here
 
 # Allows you to load environment variables from kubernetes secret or config map
-envFrom: []
+envFrom:
+  - secretRef:
+      name: env-secret
 # - secretRef:
 #     name: env-secret
 # - configMapRef:
 #     name: config-map
 
 # Add sensitive data to k8s secrets
-secrets: []
+secrets:
+  - name: "env-secret"
+    value:
+      ES_USER: <path:kubernetes_apps/data/elastic_search#ES_USER>
+      ES_PASSWORD: <path:kubernetes_apps/data/elastic_search#ES_PASSWORD>   
 #  - name: "env"
 #    value:
 #      ELASTICSEARCH_PASSWORD: "LS1CRUdJTiBgUFJJVkFURSB"
