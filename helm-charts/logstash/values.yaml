@@ -38,6 +38,7 @@ logstashPipeline:
           index => "%{[@metadata][beat]}-%{[@metadata][version]}-%{+YYYY.MM.dd}"
           user => "${ES_USER}"
           password => "${ES_PASSWORD}"
+          cacert => '/etc/logstash/certificates/ca.crt'
       }
     }
     
@@ -93,7 +94,13 @@ secrets: []
 #      cert.key.filepath: "secrets.crt" # The path to file should be relative to the `values.yaml` file.
 
 # A list of secrets and their paths to mount inside the pod
-secretMounts: []
+secretMounts:
+  - name: cert-vol
+    secret:
+      secretName: logstash-logstash-env
+    mountPath: /etc/logstash/certificates/ca.crt
+    subPath: ca.cert
+    #value: logstash-logstash-env
 
 hostAliases: []
 #- ip: "127.0.0.1"
