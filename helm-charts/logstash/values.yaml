@@ -96,8 +96,7 @@ secrets: []
 # A list of secrets and their paths to mount inside the pod
 secretMounts:
   - name: cert-vol
-    secret:
-      secretName: logstash-logstash-cert
+    secretName: logstash-logstash-cert
     mountPath: /etc/logstash/certificates/ca.crt
     #value: logstash-logstash-env
 
