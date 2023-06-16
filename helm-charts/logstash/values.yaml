@@ -97,7 +97,8 @@ secrets: []
 secretMounts:
   - name: cert-vol
     secretName: logstash-logstash-cert
-    mountPath: /etc/logstash/certificates/ca.crt
+    path: /etc/logstash/certificates/ca.crt
+    #subPath: ca.cert
     #value: logstash-logstash-env
 
 hostAliases: []
