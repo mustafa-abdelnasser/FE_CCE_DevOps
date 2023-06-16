@@ -76,8 +76,8 @@ envFrom:
 secrets:
   - name: "env"
     value:
-      ES_USER: <path:kubernetes_apps/data/elastic_search#ES_USER>
-      ES_PASSWORD: <path:kubernetes_apps/data/elastic_search#ES_PASSWORD>   
+      ES_USER: <kubernetes_apps/data/elastic_search#ES_USER>
+      ES_PASSWORD: <kubernetes_apps/data/elastic_search#ES_PASSWORD>   
 #  - name: "env"
 #    value:
 #      ELASTICSEARCH_PASSWORD: "LS1CRUdJTiBgUFJJVkFURSB"
