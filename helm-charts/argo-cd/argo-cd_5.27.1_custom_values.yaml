@@ -355,22 +355,22 @@ configs:
           args: ["generate", "--secret-name", "vault-configuration", "." ]
         allowConcurrency: true
         lockRepo: false
-      argocd-vault-plugin-helm:
-        discover:
-          find:
-            command:
-              - sh
-              - "-c"
-              - "find . -name 'Chart.yaml' && find . -name 'values.yaml'"
-        generate:
-          command:
-            - sh
-            - "-c"
-            - |
-              helm template $ARGOCD_APP_NAME --include-crds . |
-              argocd-vault-plugin generate -
-        allowConcurrency: true
-        lockRepo: false
+      # argocd-vault-plugin-helm:
+      #   discover:
+      #     find:
+      #       command:
+      #         - sh
+      #         - "-c"
+      #         - "find . -name 'Chart.yaml' && find . -name 'values.yaml'"
+      #   generate:
+      #     command:
+      #       - sh
+      #       - "-c"
+      #       - |
+      #         helm template $ARGOCD_APP_NAME --include-crds . |
+      #         argocd-vault-plugin generate -
+      #   allowConcurrency: true
+      #   lockRepo: false
       # --- First plugin
       # my-plugin:
       #   init:
