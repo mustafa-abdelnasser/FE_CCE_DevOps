@@ -7,9 +7,9 @@ replicas: 1
 # Note that when overriding logstash.yml, `http.host: 0.0.0.0` should always be included
 # to make default probes work.
 logstashConfig:
-  # logstash.yml: |
-  #   http:
-  #     host: "0.0.0.0"
+  logstash.yml: |
+    http.host: "0.0.0.0"
+    xpack.monitoring.elasticsearch.hosts: [ "https://90.84.19.224:9200" ]
   #   path:
   #     config: /usr/share/logstash/pipeline
 #  logstash.yml: |
@@ -34,7 +34,7 @@ logstashPipeline:
 
     output {
       elasticsearch {
-          hosts => "https://90.84.19.224:9200"
+          hosts => ["https://90.84.19.224:9200"]
           index => "%{[@metadata][beat]}-%{[@metadata][version]}-%{+YYYY.MM.dd}"
           ssl => true
           ssl_certificate_verification => false
