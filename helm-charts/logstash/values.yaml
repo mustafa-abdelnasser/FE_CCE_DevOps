@@ -40,7 +40,7 @@ logstashPipeline:
           ssl_certificate_verification => false
           user => "${ES_USER}"
           password => "${ES_PASSWORD}"
-          cacert => '/usr/share/logstash/es.crt'
+          cacert => '/usr/share/logstash/cert/es.crt'
       }
     }
     
@@ -102,7 +102,7 @@ secrets:
 secretMounts:
   - name: elastic-cert
     secretName: logstash-logstash-elastic-cert
-    path: /usr/share/logstash/
+    path: /usr/share/logstash/cert/
     #subPath: ca.cert
     #value: logstash-logstash-env
 
